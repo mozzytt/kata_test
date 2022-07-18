@@ -11,34 +11,36 @@ public class Main {
         String strMain = scanner.nextLine();
         System.in.close();
         String[] strMainSubStringsArray = strMain.split(" ");
-        for (int i = 0; i < 11; i++) {
-            if (strMainSubStringsArray[0].equals(allowedNumbersArabic[i])) {
-                bool[0] = 0;
-                break;
+        if(strMainSubStringsArray.length==3) {
+            for (int i = 0; i < 11; i++) {
+                if (strMainSubStringsArray[0].equals(allowedNumbersArabic[i])) {
+                    bool[0] = 0;
+                    break;
+                }
             }
-        }
-        for (int i = 0; i < 10; i++) {
-            if (strMainSubStringsArray[0].equals(allowedNumbersRoman[i])) {
-                bool[0] = 1;
-                break;
+            for (int i = 0; i < 10; i++) {
+                if (strMainSubStringsArray[0].equals(allowedNumbersRoman[i])) {
+                    bool[0] = 1;
+                    break;
+                }
             }
-        }
-        for (int i = 0; i < 4; i++) {
-            if (strMainSubStringsArray[1].equals(allowedOperations[i])) {
-                bool[1] = 0;
-                break;
+            for (int i = 0; i < 4; i++) {
+                if (strMainSubStringsArray[1].equals(allowedOperations[i])) {
+                    bool[1] = 0;
+                    break;
+                }
             }
-        }
-        for (int i = 0; i < 11; i++) {
-            if (strMainSubStringsArray[2].equals(allowedNumbersArabic[i])) {
-                bool[2] = 0;
-                break;
+            for (int i = 0; i < 11; i++) {
+                if (strMainSubStringsArray[2].equals(allowedNumbersArabic[i])) {
+                    bool[2] = 0;
+                    break;
+                }
             }
-        }
-        for (int i = 0; i < 10; i++) {
-            if (strMainSubStringsArray[2].equals(allowedNumbersRoman[i])) {
-                bool[2] = 1;
-                break;
+            for (int i = 0; i < 10; i++) {
+                if (strMainSubStringsArray[2].equals(allowedNumbersRoman[i])) {
+                    bool[2] = 1;
+                    break;
+                }
             }
         }
         if (strMainSubStringsArray.length > 3) {
@@ -57,6 +59,7 @@ public class Main {
                 case "*":
                     System.out.println(Integer.parseInt(strMainSubStringsArray[0])*Integer.parseInt(strMainSubStringsArray[2]));break;
                 case "/":
+                    if (Integer.parseInt(strMainSubStringsArray[2])==0){throw new Exception("throws Exception //Деление на ноль");}
                     System.out.println(Integer.parseInt(strMainSubStringsArray[0])/Integer.parseInt(strMainSubStringsArray[2]));break;
             }
         };
@@ -92,9 +95,15 @@ public class Main {
                     break;
                 case "/":
                     resultInt=aInt/bInt;
+                    if (bInt==0){throw new Exception("throws Exception //Деление на ноль");}
                     System.out.println(resultRoman[resultInt-1]);
                     break;
             }
         };
+        if (((bool[0]==1) & (bool[1]==0) & (bool[2]==1)) | ((bool[0]==0) & (bool[1]==0) & (bool[2]==0))){
+
+        } else {
+            throw new Exception("throws Exception //строка выходит за рамки задания");
+        }
     }
 }
